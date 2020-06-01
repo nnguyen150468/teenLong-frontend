@@ -61,7 +61,7 @@ function App() {
   return (
     <div>
       <NavBar user={user} setUser={setUser} />
-      <Header />
+      {/* <Header /> */}
       <Switch>
         
         <Route path="/search/" exact component={SearchResultPage}/>

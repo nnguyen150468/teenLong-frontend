@@ -3,31 +3,51 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { uploadFile } from 'react-s3';
 
-const configurations = {
-    bucketName: 'teen-long',
-    dirName: 'teen-long01',
-    region: 'ap-southeast-1',
-    accessKeyId: process.env.AMZ_KEY,
-    secretAccessKey: process.env.AMZ_SECRET,
-}
-
 export default function AddWordPage() {
     const [input, setInput] = useState({
         word: "",
         definition: "",
-        example: ""
+        example: "",
+        image: ""
     })
 
     const [warning, setWarning] = useState(null)
     const [inputStyle, setInputStyle] = useState(null)
     const [newWord, setNewWord] = useState(null)
 
-    const [file, setFile] = useState(null)
-
-
     const handleChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value })
-        
+    }
+
+    const uploadFile = async() => {
+        const selectedFile = document.getElementById('upload_form').files[0]
+        if(!selectedFile){
+            submitInput()
+        } else {
+            var formdata = new FormData();
+            formdata.append("image", selectedFile);
+            const res = await fetch("https://api.imgur.com/3/image", {
+                method: "POST",
+                headers: {
+                    Authorization: `Client-ID ${process.env.REACT_APP_IMGUR_KEY}`
+                },
+                body: formdata
+            });
+            
+            if(res.ok){
+                const data = await res.json();
+                console.log('data====',data)
+                if(data.success){
+                    input.image = data.data.link
+                    submitInput()
+                } else {
+                    console.log("cannot upload because of", data.message)
+                }
+            } else {
+                alert("cannot upload")
+            }
+        }
+
     }
 
     const getInput = (e) => {
@@ -36,53 +56,38 @@ export default function AddWordPage() {
         if (form.checkValidity() === false) {
             e.stopPropagation();
         } else {
-            submitInput()
+            uploadFile();
         }
     }
 
-    // const onChangeHandler = e => {
-    //     setFile(e.target.files[0])
-    // }
-
-    const submitFile = () => {
-        const file = document.getElementById('uploadForm').files[0]
-        uploadFile(file, configurations)
-        .then(data => console.log('data',data))
-        .catch(err => console.error(err))
-    }
 
     const submitInput = async () => {
-        const file = document.getElementById('uploadForm').files[0]
-        console.log('file in submit==', file)
-        uploadFile(file, configurations)
-            .then(data => console.log('data',data))
-            .catch(err => console.error(err))
-
-        
-        // const token = localStorage.getItem("teenLongToken")
-        // const config = {
-        //     method: "POST",
-        //     body: JSON.stringify(input),
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Authorization": `Bearer ${token}`
-        //     }
-        // }
-        // const res = await fetch(`${process.env.REACT_APP_SERVER}/addNewWord`, config)
-        // const data = await res.json()
-        // if (data.status === "success") {
-        //     setNewWord(data.data)
-        // }
-        // console.log('data ====', data)
+    
+        console.log('input====', input)
+        const token = localStorage.getItem("teenLongToken")
+        const config = {
+            method: "POST",
+            body: JSON.stringify(input),
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        }
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/addNewWord`, config)
+        const data = await res.json()
+        if (data.status === "success") {
+            setNewWord(data.data)
+        }
+        console.log('data new Word====', data)
     }
 
     return (
         <div className="d-flex justify-content-center">
             {!newWord ?
                 <Form 
-                // onSubmit={getInput} 
-                onSubmit={submitFile}
-                // onChange={handleChange}
+                onSubmit={getInput} 
+                
+                onChange={handleChange}
                 // onChange={e=>onChangeHandler(e)}
                 >
                     <Form.Group controlId="formBasicWord">
@@ -120,7 +125,7 @@ export default function AddWordPage() {
 
                     <Form.Group>
                         <Form.Label>Upload photo (Optional)</Form.Label>
-                        <Form.Control type="file" name="file" id="uploadForm" accept="image/jpg, image/png, image/jpeg, image/gif" />
+                        <Form.Control type="file" id="upload_form" name="image" accept="image/jpg, image/png, image/jpeg, image/gif" />
                     </Form.Group>
 
                     <Button variant="primary" type="submit">
