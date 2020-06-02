@@ -7,35 +7,15 @@ import { Link } from 'react-router-dom'
 
 export default function Words(props) {
     // const [words, setWords] = useState([])
-    const [userName, setUserName] = useState('haha')
-
-    useEffect(() => {
-        getWords()
-    }, [])
-
-    const getWords = async () => {
-        const config = {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/`, config)
-        const data = await res.json()
-        props.setWords(data.data)
-    }
-
-
-
 
     const renderWord = () => {
             return props.words? props.words.map(el => 
         (<Card className="col my-4" key={el._id}>
             <Card.Body>
-                <Card.Title>{el.word}</Card.Title>
+                <Card.Title><Link to={`/search/${el.word}`}>{el.word}</Link></Card.Title>
                 <Card.Text>
                     {el.definition}
-                    {/* <div>{props.words.indexOf(el)===0? 'TOP DEFI' : ''}</div> */}
+                    <div>{props.isSearch && props.words.indexOf(el)===0? 'TOP DEFINITION' : ''}</div>
                 </Card.Text>
                 <Card.Text className="font-italic">
                     {el.example}
@@ -43,7 +23,7 @@ export default function Words(props) {
                 <Card.Img variant="top" src={el.image} />
                 {/* <Button variant="primary">Like</Button>
                 <Button variant="primary">Dislike</Button> */}
-                <Reactions word={el._id} likes={el.reactions.likes} dislikes={el.reactions.dislikes} getWords={getWords} />
+                <Reactions word={el._id} likes={el.reactions.likes} dislikes={el.reactions.dislikes} getWords={props.getWords} />
             </Card.Body>
             
                 <small className="text-muted">

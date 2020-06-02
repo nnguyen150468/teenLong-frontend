@@ -64,7 +64,7 @@ function App() {
       {/* <Header /> */}
       <Switch>
         
-        <Route path="/search/" exact component={SearchResultPage}/>
+        <Route path="/search/:keyWord" exact component={SearchResultPage}/>
         {/* <Route path="/login" exact user={user} setUser={setUser}  component={LoginPage} /> */}
         <AlreadyLoggedIn path="/login" exact user={user} setUser={setUser} component={LoginPage}/>
         <AlreadyLoggedIn path="/signup" exact user={user} component={SignupPage} />

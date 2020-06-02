@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import {Link, NavLink} from 'react-router-dom'
 
+
 export default function NavBar(props) {
 
     async function logout(){

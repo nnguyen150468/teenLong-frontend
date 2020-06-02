@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import PendingWords from '../components/PendingWords'
 import ApprovedWords from '../components/ApprovedWords'
+import UserStats from '../components/UserStats'
 
 export default function MyProfilePage(props) {
     const [pendingWords, setPendingWords] = useState([])
@@ -32,6 +33,7 @@ export default function MyProfilePage(props) {
         <div>
             My Profile
             {props.user? props.user.name : ""}
+            <UserStats user={props.user} />
             {pendingWords? <PendingWords pendingWords={pendingWords} /> : ""}
             {approvedWords? <ApprovedWords approvedWords={approvedWords} /> : ""}
         </div>
