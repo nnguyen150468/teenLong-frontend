@@ -13,6 +13,7 @@ import PasswordRecoverPage from './pages/PasswordRecoverPage'
 import SetNewPasswordPage from './pages/SetNewPasswordPage'
 import MyProfilePage from './pages/MyProfilePage'
 import UserPage from './pages/UserPage'
+import FilterByFirstCharPage from './pages/FilterByFirstCharPage'
 import Words from './components/Words'
 import TestAddImg from './pages/TestAddImg'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -74,7 +75,7 @@ function App() {
         <Route path="/" user={user} exact component={HomePage} />
         <MustLogInFirst path="/myProfile" exact user={user} component={MyProfilePage} />
         <Route path="/users/:userID" exact component={UserPage} />
-        <Route path="/test" exact component={TestAddImg}/>
+        <Route path="/filter/first-char/:character" exact component={FilterByFirstCharPage}/>
       </Switch>
       
       

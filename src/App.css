@@ -31,3 +31,20 @@ a:hover {
 .active {
   color: white
 }
+
+.firstChar {
+  background-color: rgb(253, 206, 53);
+  font-weight: bold;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+}
+
+.firstChar:hover {
+  background-color: rgb(228, 175, 0);
+}
+
+.dropdown-menu {
+  width: 280px !important;
+}

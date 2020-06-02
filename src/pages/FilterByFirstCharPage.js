@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import Words from '../components/Words'
+import {useParams} from 'react-router-dom'
 import Header from '../components/Header'
 import Pagination from "react-js-pagination";
+import Words from '../components/Words'
 
-export default function HomePage() {
+export default function FilterByFirstCharPage() {
+    const params = useParams()
+    console.log('params', params.character)
     const [words, setWords] = useState([])
     const [activePage, setActivePage] = useState(1);
     const [totalResult, setTotalResult] = useState(1)
@@ -20,8 +23,8 @@ export default function HomePage() {
     }
 
     const getWords = async () => {
-
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/?page=1`, config)
+        
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/filter/${params.character}?page=1`, config)
         const data = await res.json()
         console.log('data===', data)
         setWords(data.data)
@@ -33,7 +36,7 @@ export default function HomePage() {
         setActivePage(pageNumber);
         console.log(`active page is ${pageNumber}`);
 
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/?page=${pageNumber}`, config);
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/filter/${params.character}?page=${pageNumber}`, config);
         const data = await res.json();
         console.log('paginated data:', data);
         setWords(data.data)
