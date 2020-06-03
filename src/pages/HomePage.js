@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Words from '../components/Words'
 import Header from '../components/Header'
 import Pagination from "react-js-pagination";
+import {ReactComponent as Logo} from '../components/youngbuff.svg' 
 
 export default function HomePage() {
     const [words, setWords] = useState([])
@@ -21,7 +22,7 @@ export default function HomePage() {
 
     const getWords = async () => {
 
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/?page=1`, config)
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/?page=${activePage}`, config)
         const data = await res.json()
         console.log('data===', data)
         setWords(data.data)
@@ -47,8 +48,10 @@ export default function HomePage() {
             <div className="d-flex">
                 <div className="col-3"></div>
                 <div className="col-6">
-                    <Words words={words} setWords={setWords} getWords={getWords}/>
+                    
+                    <Words words={words}  setWords={setWords} getWords={getWords}/>
                    
+                   <div className="d-flex justify-content-center">
                     <Pagination className="pagination m-5 p-5"
                         prevPageText='prev'
                         nextPageText='next'
@@ -61,6 +64,7 @@ export default function HomePage() {
                         itemClass="page-item"
                         linkClass="page-link"
                         />
+                        </div>
                 </div>
             </div>
         </div>

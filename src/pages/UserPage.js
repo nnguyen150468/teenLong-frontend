@@ -56,6 +56,7 @@ export default function UserPage(props) {
 
     return (
         <div>
+            
             {user? user.name: ""}
             {user? <UserStats user={user} /> : ""}
             <ApprovedWords approvedWords={words} />

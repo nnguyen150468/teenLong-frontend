@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+@font-face {
+  font-family: wordTitle;
+  src: url('./images/CharisSILB.ttf');
+}
+
 a{
   text-decoration: none;
 }
@@ -47,4 +52,57 @@ a:hover {
 
 .dropdown-menu {
   width: 280px !important;
+}
+
+.bannerImage {
+  max-width: 20vw;
+}
+
+.word {
+  font-family: wordTitle;
+  font-size: 1.5em;
+}
+
+.button {
+  border: none
+}
+
+.dislikeButton {
+  background-color: #8b4513;
+}
+
+.dislikeButton:hover {
+  background-color: #be6e34;
+}
+
+.pagination > li > a
+{
+    background-color: var(--warning);
+    color: white !Important;
+    border-style: none;
+}
+
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: white ; 
+    background-color: #8b4513 !Important;
+    border-style: none;
+    outline: none
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: #8b4513 !Important;
+    border-style: none;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #8b4513 !Important;
+    border-style: none;
 }
