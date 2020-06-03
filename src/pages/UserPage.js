@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useParams, useLocation} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import UserStats from '../components/UserStats'
 import ApprovedWords from '../components/ApprovedWords'
 import Header from '../components/Header'

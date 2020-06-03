@@ -12,6 +12,7 @@ export default function FilterByFirstCharPage() {
     const [totalResult, setTotalResult] = useState(1)
 
     useEffect(() => {
+        setActivePage(1)
         getWords()
     }, [params.character])
 

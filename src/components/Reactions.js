@@ -20,7 +20,7 @@ export default function Reactions(props) {
         console.log('data like dislike===', data)
         if(data.status==="success"){
             console.log('about to get words')
-            props.getWords()
+            props.getWords(props.key)
         }
     }
 
