@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {useParams, useLocation} from 'react-router-dom'
 import UserStats from '../components/UserStats'
 import ApprovedWords from '../components/ApprovedWords'
+import Header from '../components/Header'
+import Words from '../components/Words'
 import Pagination from "react-js-pagination";
 
 export default function UserPage(props) {
@@ -33,10 +35,10 @@ export default function UserPage(props) {
     }
 
     const getWords = async() => {
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/users/${params.userID}/words/?page=1`, config)
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/users/${params.userID}/words?page=${activePage}`, config)
         const data = await res.json()
         if(data.status==="success"){
-            console.log('success!')
+            console.log('success!', data)
             setWords(data.data)
             setTotalResult(data.totalResult)
         }
@@ -56,21 +58,34 @@ export default function UserPage(props) {
 
     return (
         <div>
-            {user? user.name: ""}
+            <Header words={words} setWords={setWords}/>
+            
+            
+            <div className="d-flex">
+                <div className="col-3"></div>
+                <div className="col-6">
+                {user? user.name: ""}
             {user? <UserStats user={user} /> : ""}
-            <ApprovedWords approvedWords={words} />
-            <Pagination className="pagination m-5 p-5"
-                prevPageText='prev'
-                nextPageText='next'
-                firstPageText='first'
-                lastPageText='last'
-                activePage={activePage}
-                itemsCountPerPage={10}
-                totalItemsCount={totalResult}
-                onChange={(pageNumber)=>handlePageChange(pageNumber)}
-                itemClass="page-item"
-                linkClass="page-link"
-                />
+
+
+                    <Words words={words}  setWords={setWords} getWords={getWords}/>
+                   
+                   <div className="d-flex justify-content-center">
+                    <Pagination className="pagination m-5 p-5"
+                        prevPageText='prev'
+                        nextPageText='next'
+                        firstPageText='first'
+                        lastPageText='last'
+                        activePage={activePage}
+                        itemsCountPerPage={10}
+                        totalItemsCount={totalResult}
+                        onChange={(pageNumber)=>handlePageChange(pageNumber)}
+                        itemClass="page-item"
+                        linkClass="page-link"
+                        />
+                        </div>
+                </div>
+            </div>
         </div>
     )
 }

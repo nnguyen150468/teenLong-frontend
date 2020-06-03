@@ -13,7 +13,7 @@ export default function FilterByFirstCharPage() {
 
     useEffect(() => {
         getWords()
-    }, [])
+    }, [params.character])
 
     const config = {
         method: "GET",
@@ -24,7 +24,7 @@ export default function FilterByFirstCharPage() {
 
     const getWords = async () => {
         
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/filter/${params.character}?page=1`, config)
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/filter/${params.character}?page=${activePage}`, config)
         const data = await res.json()
         console.log('data===', data)
         setWords(data.data)
@@ -52,18 +52,20 @@ export default function FilterByFirstCharPage() {
                 <div className="col-6">
                     <Words words={words} setWords={setWords} getWords={getWords}/>
                    
-                    <Pagination className="pagination m-5 p-5"
-                        prevPageText='prev'
-                        nextPageText='next'
-                        firstPageText='first'
-                        lastPageText='last'
-                        activePage={activePage}
-                        itemsCountPerPage={10}
-                        totalItemsCount={totalResult}
-                        onChange={(pageNumber)=>handlePageChange(pageNumber)}
-                        itemClass="page-item"
-                        linkClass="page-link"
-                        />
+                    <div className="d-flex justify-content-center">
+                        <Pagination className="pagination m-5 p-5"
+                            prevPageText='prev'
+                            nextPageText='next'
+                            firstPageText='first'
+                            lastPageText='last'
+                            activePage={activePage}
+                            itemsCountPerPage={10}
+                            totalItemsCount={totalResult}
+                            onChange={(pageNumber)=>handlePageChange(pageNumber)}
+                            itemClass="page-item"
+                            linkClass="page-link"
+                            />
+                    </div>
                 </div>
             </div>
         </div>
