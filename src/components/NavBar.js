@@ -3,8 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link, NavLink, useHistory } from 'react-router-dom'
-import {ReactComponent as Logo} from './logo.svg' 
-const logo = require('./youngbuff.svg')
+import {ReactComponent as Logo} from '../images/logo.svg' 
 
 export default function NavBar(props) {
     const history = useHistory()

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {useParams, useLocation} from 'react-router-dom'
 import UserStats from '../components/UserStats'
 import ApprovedWords from '../components/ApprovedWords'
+import Header from '../components/Header'
+import Words from '../components/Words'
 import Pagination from "react-js-pagination";
 
 export default function UserPage(props) {
@@ -56,22 +58,34 @@ export default function UserPage(props) {
 
     return (
         <div>
+            <Header words={words} setWords={setWords}/>
             
-            {user? user.name: ""}
+            
+            <div className="d-flex">
+                <div className="col-3"></div>
+                <div className="col-6">
+                {user? user.name: ""}
             {user? <UserStats user={user} /> : ""}
-            <ApprovedWords approvedWords={words} />
-            <Pagination className="pagination m-5 p-5"
-                prevPageText='prev'
-                nextPageText='next'
-                firstPageText='first'
-                lastPageText='last'
-                activePage={activePage}
-                itemsCountPerPage={10}
-                totalItemsCount={totalResult}
-                onChange={(pageNumber)=>handlePageChange(pageNumber)}
-                itemClass="page-item"
-                linkClass="page-link"
-                />
+
+
+                    <Words words={words}  setWords={setWords} getWords={getWords}/>
+                   
+                   <div className="d-flex justify-content-center">
+                    <Pagination className="pagination m-5 p-5"
+                        prevPageText='prev'
+                        nextPageText='next'
+                        firstPageText='first'
+                        lastPageText='last'
+                        activePage={activePage}
+                        itemsCountPerPage={10}
+                        totalItemsCount={totalResult}
+                        onChange={(pageNumber)=>handlePageChange(pageNumber)}
+                        itemClass="page-item"
+                        linkClass="page-link"
+                        />
+                        </div>
+                </div>
+            </div>
         </div>
     )
 }

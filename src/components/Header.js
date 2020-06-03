@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
-import {ReactComponent as SearchImg} from '../images/search.svg'
 import searchImg from '../images/search.svg'
 import title from '../images/text.svg'
 
