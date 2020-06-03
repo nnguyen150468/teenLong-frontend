@@ -31,7 +31,7 @@ export default function Words(props) {
                 {/* <Button variant="primary">Like</Button>
                 <Button variant="primary">Dislike</Button> */}
                 
-                <Reactions word={el._id}  likes={el.reactions.likes} dislikes={el.reactions.dislikes} getWords={props.getWords} />
+                {el.isApproved? <Reactions word={el._id}  likes={el.reactions.likes} dislikes={el.reactions.dislikes} getWords={props.getWords} />: ""}
             </Card.Body>
         </Card>)
         )

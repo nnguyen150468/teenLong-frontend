@@ -35,10 +35,10 @@ export default function UserPage(props) {
     }
 
     const getWords = async() => {
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/users/${params.userID}/words/?page=1`, config)
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/users/${params.userID}/words?page=${activePage}`, config)
         const data = await res.json()
         if(data.status==="success"){
-            console.log('success!')
+            console.log('success!', data)
             setWords(data.data)
             setTotalResult(data.totalResult)
         }
