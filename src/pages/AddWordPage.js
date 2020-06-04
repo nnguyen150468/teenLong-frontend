@@ -14,8 +14,10 @@ export default function AddWordPage(props) {
     const user = localStorage.getItem("teenLongToken")
 
     const [warning, setWarning] = useState(null)
-    const [inputStyle, setInputStyle] = useState(null)
+    
     const [newWord, setNewWord] = useState(null)
+
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value })
@@ -49,12 +51,11 @@ export default function AddWordPage(props) {
                 alert("cannot upload")
             }
         }
-
     }
 
     const getInput = (e) => {
         e.preventDefault()
-
+        setLoading(true)
         if(!user){
             setWarning(<h6 className="text-danger">Đăng nhập đã bạn ơi vội vàng làm chi</h6>)
             return
@@ -85,6 +86,7 @@ export default function AddWordPage(props) {
         const data = await res.json()
         if (data.status === "success") {
             setNewWord(data.data)
+            setLoading(false)
         }
         console.log('data new Word====', data)
     }
@@ -100,6 +102,7 @@ export default function AddWordPage(props) {
                     <h6 className="mb-4">Hoặc định nghĩa mới cho từ cũ</h6>
                     
                     {warning}
+                    {loading? <div className="loader"></div> : ""}
 
                     <Form.Group controlId="formBasicWord">
                         <Form.Label>Từ <span className="text-danger">*</span></Form.Label>
