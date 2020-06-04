@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import UserStats from '../components/UserStats'
+import {Link} from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Words from '../components/Words'
 import Pagination from "react-js-pagination";
@@ -52,30 +53,25 @@ export default function MyProfilePage(props) {
             <div className="d-flex">
                 <div className="col-3"></div>
                 <div className="col-6">
-                    {props.user ? <div><div>{props.user.name}</div>
+                    {props.user ? 
+                    <div>
+                        <div>{props.user.name}</div>
                         <UserStats user={props.user} />
-                        <Button variant="warning" className="mr-2" onClick={() => getWords('allMyPending')}>
-                            Từ chờ duyệt <i class="fas fa-search"></i></Button>
+                        <Link to="/myProfile/pendingWords">
+                            <Button variant="warning" className="mr-2" onClick={() => getWords('allMyPending')}>
+                                Từ chờ duyệt <i class="fas fa-search"></i></Button>
+                        </Link>
+                        <Link to="/myProfile/approvedWords">
                         <Button variant="warning" onClick={() => getWords('allMyApproved')}>
                             Từ được đăng <i class="fas fa-search"></i></Button>
+                        </Link>
                     </div> : ""}
 
 
                     <Words words={words} key={key} setWords={setWords} getWords={getWords} />
 
                     <div className="d-flex justify-content-center">
-                        <Pagination className="pagination m-5 p-5"
-                            prevPageText='prev'
-                            nextPageText='next'
-                            firstPageText='first'
-                            lastPageText='last'
-                            activePage={activePage}
-                            itemsCountPerPage={10}
-                            totalItemsCount={totalResult}
-                            onChange={(pageNumber) => handlePageChange(pageNumber)}
-                            itemClass="page-item"
-                            linkClass="page-link"
-                        />
+                        
                     </div>
                 </div>
             </div>

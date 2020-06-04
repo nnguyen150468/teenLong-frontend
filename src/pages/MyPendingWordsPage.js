@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
+import UserStats from '../components/UserStats'
 import Words from '../components/Words'
-import Header from '../components/Header'
 import Pagination from "react-js-pagination";
 
-export default function HomePage() {
+export default function MyPendingWordsPage(props) {
     const [words, setWords] = useState([])
     const [activePage, setActivePage] = useState(1);
     const [totalResult, setTotalResult] = useState(1)
@@ -15,15 +15,14 @@ export default function HomePage() {
     const config = {
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("teenLongToken")}`
         }
     }
 
     const getWords = async () => {
-
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/?page=${activePage}`, config)
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/allMyPending?page=${activePage}`, config)
         const data = await res.json()
-        console.log('data===', data)
         setWords(data.data)
         setTotalResult(data.totalResult)
     }
@@ -31,11 +30,8 @@ export default function HomePage() {
     // pagination
     const handlePageChange = async (pageNumber)=> {
         setActivePage(pageNumber);
-        console.log(`active page is ${pageNumber}`);
-
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/?page=${pageNumber}`, config);
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/allMyApproved?page=${pageNumber}`, config);
         const data = await res.json();
-        console.log('paginated data:', data);
         setWords(data.data)
         setTotalResult(data.totalResult)
     }
@@ -43,11 +39,13 @@ export default function HomePage() {
 
     return (
         <div>
-            <Header words={words} setWords={setWords}/>
+            
             <div className="d-flex">
                 <div className="col-3"></div>
+                {props.user? 
                 <div className="col-6">
-                    
+                    <div>{props.user.name}</div>
+                    <UserStats user={props.user} />
                     <Words words={words}  setWords={setWords} getWords={getWords}/>
                    
                    <div className="d-flex justify-content-center">
@@ -64,7 +62,7 @@ export default function HomePage() {
                         linkClass="page-link"
                         />
                         </div>
-                </div>
+                </div> : <div className="loader"></div>}
             </div>
         </div>
     )

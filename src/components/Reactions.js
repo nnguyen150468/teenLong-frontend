@@ -28,8 +28,8 @@ export default function Reactions(props) {
         console.log('data like dislike===', data)
         if(data.status==="success"){
             console.log('about to get words')
-            console.log('props.key', props.key)
-            props.getWords(props.key)
+            
+            props.getWords()
         }
     }
 
@@ -55,7 +55,7 @@ export default function Reactions(props) {
         console.log('data like dislike===', data)
         if(data.status==="success"){
             console.log('about to get words')
-            props.getWords(props.key)
+            props.getWords()
         }
     }
 

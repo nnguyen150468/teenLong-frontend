@@ -12,6 +12,8 @@ import AddWordPage from './pages/AddWordPage'
 import PasswordRecoverPage from './pages/PasswordRecoverPage'
 import SetNewPasswordPage from './pages/SetNewPasswordPage'
 import MyProfilePage from './pages/MyProfilePage'
+import MyPendingWordsPage from './pages/MyPendingWordsPage'
+import MyApprovedWordsPage from './pages/MyApprovedWordsPage'
 import UserPage from './pages/UserPage'
 import FilterByFirstCharPage from './pages/FilterByFirstCharPage'
 import Words from './components/Words'
@@ -74,6 +76,8 @@ function App() {
         <AlreadyLoggedIn path="/email/:token" exact component={SetNewPasswordPage} />
         <Route path="/" user={user} exact component={HomePage} />
         <MustLogInFirst path="/myProfile" exact user={user} component={MyProfilePage} />
+        <MustLogInFirst path="/myProfile/pendingWords" exact user={user} component={MyPendingWordsPage} />
+        <MustLogInFirst path="/myProfile/approvedWords" exact user={user} component={MyApprovedWordsPage} />
         <Route path="/users/:userID" exact component={UserPage} />
         <Route path="/filter/first-char/:character" exact component={FilterByFirstCharPage}/>
       </Switch>
