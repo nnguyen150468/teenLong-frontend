@@ -56,7 +56,7 @@ function App() {
     }
   }  
 
-  if(!loaded) {return <div>Loading...</div>}
+  if(!loaded) {return <div className="loader"></div>}
 
   return (
     <div>

@@ -11,6 +11,8 @@ export default function FilterByFirstCharPage() {
     const [activePage, setActivePage] = useState(1);
     const [totalResult, setTotalResult] = useState(1)
 
+    const [warning, setWarning] = useState(null)
+
     useEffect(() => {
         getWords()
     }, [params.character])
@@ -27,6 +29,13 @@ export default function FilterByFirstCharPage() {
         const res = await fetch(`${process.env.REACT_APP_SERVER}/words/filter/${params.character}?page=${1}`, config)
         const data = await res.json()
         console.log('data===', data)
+        if(data.totalResult > 0){
+            console.log('totalResult is >0', data.totalResult)
+            setWords(data.data)
+        } else if(data.totalResult===0){
+            console.log('totalResult is', data.totalResult)
+            setWarning(<div>Không tìm thấy kết quả cho chữ cái này :(</div>)
+        }
         setWords(data.data)
         setTotalResult(data.totalResult)
     }
@@ -44,14 +53,14 @@ export default function FilterByFirstCharPage() {
     }
 
 
-    return ( words?
+    return (words?
         <div>
             <Header words={words} setWords={setWords}/>
             <div className="d-flex">
                 <div className="col-3"></div>
                 <div className="col-6">
                     <Words words={words} setWords={setWords} getWords={getWords}/>
-                   
+                    <h2 className="mt-5">{warning}</h2>
                     <div className="d-flex justify-content-center">
                         <Pagination className="pagination m-5 p-5"
                             prevPageText='prev'
