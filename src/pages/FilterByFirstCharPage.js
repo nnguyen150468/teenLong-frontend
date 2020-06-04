@@ -44,7 +44,7 @@ export default function FilterByFirstCharPage() {
     }
 
 
-    return (
+    return ( words?
         <div>
             <Header words={words} setWords={setWords}/>
             <div className="d-flex">
@@ -69,5 +69,6 @@ export default function FilterByFirstCharPage() {
                 </div>
             </div>
         </div>
+        : <div className="loader"></div>
     )
 }

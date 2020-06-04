@@ -65,7 +65,7 @@ export default function MyProfilePage(props) {
                         <Button variant="warning" onClick={() => getWords('allMyApproved')}>
                             Từ được đăng <i class="fas fa-search"></i></Button>
                         </Link>
-                    </div> : ""}
+                    </div> : <div className="loader"></div>}
 
 
                     <Words words={words} key={key} setWords={setWords} getWords={getWords} />

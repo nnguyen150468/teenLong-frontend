@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import NavBar from './components/NavBar'
-import Header from './components/Header'
 import {Switch, Route, Link} from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import SearchResultPage from './pages/SearchResultPage'
@@ -16,8 +15,6 @@ import MyPendingWordsPage from './pages/MyPendingWordsPage'
 import MyApprovedWordsPage from './pages/MyApprovedWordsPage'
 import UserPage from './pages/UserPage'
 import FilterByFirstCharPage from './pages/FilterByFirstCharPage'
-import Words from './components/Words'
-import TestAddImg from './pages/TestAddImg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 

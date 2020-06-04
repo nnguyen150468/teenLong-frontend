@@ -42,6 +42,7 @@ export default function HomePage() {
 
 
     return (
+        words?
         <div>
             <Header words={words} setWords={setWords}/>
             <div className="d-flex">
@@ -66,6 +67,6 @@ export default function HomePage() {
                         </div>
                 </div>
             </div>
-        </div>
+        </div> : <div className="loader"></div>
     )
 }

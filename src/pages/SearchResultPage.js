@@ -44,7 +44,7 @@ export default function SearchResultPage() {
       setTotalResult(data.totalResult)
   }
 
-    return (
+    return ( words?
         <div>
           
       <Header words={words} setWords={setWords}/>
@@ -70,6 +70,6 @@ export default function SearchResultPage() {
                     </div>
             </div>
         </div>
-        </div>
+        </div> : <div className="loader"></div>
     )
 }
