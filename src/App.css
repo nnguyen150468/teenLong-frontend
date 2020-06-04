@@ -176,3 +176,22 @@ a:hover {
     transform: rotate(360deg);
   }
 }
+
+.star {
+  color: rgb(228, 175, 0)
+}
+
+.wordCount {
+  color: #8b4513
+}
+
+.topDef {
+  background-color:  #ffea97;
+  color: #8b4513;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.trash {
+  cursor: pointer;
+}

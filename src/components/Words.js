@@ -7,15 +7,42 @@ import { Link } from 'react-router-dom'
 
 export default function Words(props) {
     // const [words, setWords] = useState([])
+    const deleteWord = async(wordID) => {
+        const config = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("teenLongToken")}`
+            }
+        }
+
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/pendingWords/myWords/${wordID}`, config)
+        const data = await res.json()
+        console.log('data ====', data)
+        if(data.status==="success"){
+            props.getWords()
+        }
+    }
 
     const renderWord = () => {
             return props.words? props.words.map(el => 
         (<Card className="col my-4" key={el._id}>
             <Card.Body>
-                <Card.Title><Link to={`/search/${el.word}`} className="word">{el.word}</Link></Card.Title>
+                <Card.Title className="d-flex justify-content-between">
+                    <div className="">
+                        <Link to={`/search/${el.word}`} className="word">{el.word}</Link>
+                    </div>
+                    {!el.isApproved? 
+                    <div className="float-right trash" onClick={()=>deleteWord(el._id)}>
+                        <i class="far fa-trash-alt"></i></div>
+                    : ""}
+                </Card.Title>
                 <Card.Text className="py-2">
-                    {el.definition}
-                    <div>{props.isSearch && props.words.indexOf(el)===0? 'TOP DEFINITION' : ''}</div>
+                    <div>{props.isSearch && props.words.indexOf(el)===0? 
+                    <small className="topDef p-2">ĐƯỢC ƯA THÍCH NHẤT</small> : ''}</div>
+                </Card.Text>
+                <Card.Text>
+                {el.definition}
                 </Card.Text>
                 <Card.Text className="font-italic">
                     {el.example}
@@ -35,7 +62,7 @@ export default function Words(props) {
             </Card.Body>
         </Card>)
         )
-        : <div>Loading...</div>
+        : <div className="loader"></div>
     }
 
     return (

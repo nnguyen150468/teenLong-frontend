@@ -43,8 +43,8 @@ export default function MyApprovedWords(props) {
             <div className="d-flex">
                 <div className="col-3"></div>
                 {props.user? 
-                <div className="col-6">
-                    <div>{props.user.name}</div>
+                <div className="col-6 mt-5">
+                    
                     <UserStats user={props.user} />
                     <Words words={words}  setWords={setWords} getWords={getWords}/>
                    
