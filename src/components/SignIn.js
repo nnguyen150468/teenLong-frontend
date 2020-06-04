@@ -51,14 +51,16 @@ export default function SignIn(props) {
     }
 
     return (
-        <div className="d-flex justify-content-center">
-            <Form onSubmit={getCredentials} onChange={handleChange}>
+        <div className="d-flex justify-content-center mt-5">
+            
+            <Form onSubmit={getCredentials} onChange={handleChange} >
+            <h1 className="text-center mb-3">Đăng nhập</h1>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" name="email" placeholder="Enter email"
-                        value={credentials.email} />
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="email" name="email" placeholder="Nhập email"
+                        value={credentials.email}/>
                     <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
+                        Email của bạn là bí mật giữa chúng mình
                     </Form.Text>
                 </Form.Group>
 
@@ -67,12 +69,14 @@ export default function SignIn(props) {
                     <Form.Control type="password" name="password" placeholder="Password"
                         value={credentials.password} />
                 </Form.Group>
-                <Form.Group controlId="formBasicCheckbox">
+                {/* <Form.Group controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
+                </Form.Group> */}
+                <div className="text-center">
+                <Button className="brownButton button" type="submit">
+                    Đăng nhập
                  </Button>
+                 </div>
             </Form>
         </div>
     )

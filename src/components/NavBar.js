@@ -51,13 +51,13 @@ export default function NavBar(props) {
                                 </div>
                             </NavDropdown>
 
-                            <NavDropdown title="Thể loại" id="basic-nav-dropdown">
+                            {/* <NavDropdown title="Thể loại" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                            </NavDropdown>
+                            </NavDropdown> */}
                             <Nav.Link as={NavLink} to="/addWord" inline="true">Thêm từ <i class="fas fa-plus-circle"></i></Nav.Link>
                         </Nav>
                         <Nav inline="true">

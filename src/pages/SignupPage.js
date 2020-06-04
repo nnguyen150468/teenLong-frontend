@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import SignUpBuff from '../images/signup.svg'
 
 export default function SignupPage() {
     const [credentials, setCredentials] = useState({
@@ -12,6 +13,7 @@ export default function SignupPage() {
     })
     const [warning, setWarning] = useState(null)
     const [inputStyle, setInputStyle] = useState(null)
+    const [submitted, setSubmitted] = useState(false)
 
     const history = useHistory()
     const handleChange = (e) => {
@@ -31,7 +33,7 @@ export default function SignupPage() {
     const submitCredentials = async () => {
         console.log('credentials', credentials)
         if(credentials.password!==credentials.password2){
-            setWarning(<small>Passwords don't match</small>)
+            setWarning(<small>Passwords không khớp nhau</small>)
             setInputStyle({
                 border: "1px solid red",
                 marginBottom: 0
@@ -55,8 +57,8 @@ export default function SignupPage() {
             const body = await res.json()
             console.log('here in sign up')
             console.log('res====SignUp', body)
+            setSubmitted(true)
             if(body.status === "failed") return
-
             history.push("/login")
         } catch(err){
             console.log(err.message)
@@ -65,26 +67,30 @@ export default function SignupPage() {
     }
 
     return (
+        <div className="mt-5">
+        {!submitted? 
         <div className="d-flex justify-content-center">
-        <Form onSubmit={getCredentials} onChange={handleChange}>
+            <img src={SignUpBuff} alt="sign-up-buff" className="col-md-4 col-sm-0"/>
+        <Form onSubmit={getCredentials} onChange={handleChange} className="col-5">
+            <h1>Đăng kí</h1>
             <Form.Group controlId="formBasicName">
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="text" name="name" placeholder="Name"
+                <Form.Label>Tên</Form.Label>
+                <Form.Control required type="text" name="name" placeholder="tên"
                     value={credentials.name} />
             </Form.Group>
 
             <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" name="email" placeholder="Enter email"
+                <Form.Label>Email</Form.Label>
+                <Form.Control required type="email" name="email" placeholder="email"
                     value={credentials.email} />
                 <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
+                    Chúng tôi sẽ không chia sẻ email bạn với bên thứ ba
                 </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" name="password" placeholder="Password"
+                <Form.Control required type="password" name="password" placeholder="Password"
                     value={credentials.password} style={inputStyle} />
                 <Form.Text className="text-danger">
                     {warning}
@@ -92,18 +98,20 @@ export default function SignupPage() {
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-                <Form.Label>Confirm password</Form.Label>
-                <Form.Control type="password" name="password2" placeholder="Re-enter password"
+                <Form.Label>Nhập lại password</Form.Label>
+                <Form.Control required type="password" name="password2" placeholder="Nhập lại password"
                     value={credentials.password2} style={inputStyle} />
                 <Form.Text className="text-danger">
                     {warning}
                 </Form.Text>
             </Form.Group>
 
-            <Button variant="primary" type="submit">
-                Submit
+            <Button variant="warning" type="submit" className="button">
+                Đăng kí
              </Button>
         </Form>
+        </div>
+        : <div className="text-center mt-5">Đăng kí thành công. Bạn có thể đăng nhập bằng email và password.</div>}
     </div>
     )
 }

@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { uploadFile } from 'react-s3';
 
-export default function AddWordPage() {
+
+export default function AddWordPage(props) {
     const [input, setInput] = useState({
         word: "",
         definition: "",
         example: "",
         image: ""
     })
+
+    const user = localStorage.getItem("teenLongToken")
 
     const [warning, setWarning] = useState(null)
     const [inputStyle, setInputStyle] = useState(null)
@@ -52,6 +54,12 @@ export default function AddWordPage() {
 
     const getInput = (e) => {
         e.preventDefault()
+
+        if(!user){
+            setWarning(<h6 className="text-danger">Đăng nhập đã bạn ơi vội vàng làm chi</h6>)
+            return
+        }
+
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             e.stopPropagation();
@@ -82,23 +90,26 @@ export default function AddWordPage() {
     }
 
     return (
-        <div className="d-flex justify-content-center">
-            {!newWord ?
+        <div className="d-flex justify-content-center mt-5">
+            {!newWord?
                 <Form 
-                onSubmit={getInput} 
-                
-                onChange={handleChange}
-                // onChange={e=>onChangeHandler(e)}
+                    onSubmit={getInput} 
+                    onChange={handleChange}
                 >
+                    <h1>Tạo từ mới </h1>
+                    <h6 className="mb-4">Hoặc định nghĩa mới cho từ cũ</h6>
+                    
+                    {warning}
+
                     <Form.Group controlId="formBasicWord">
-                        <Form.Label>Word</Form.Label>
-                        <Form.Control required type="text" name="word" placeholder="Word"
+                        <Form.Label>Từ <span className="text-danger">*</span></Form.Label>
+                        <Form.Control required type="text" name="word" placeholder="trẩu tre"
                             value={input.word} />
                     </Form.Group>
 
                     <Form.Group controlId="formBasicDefinition">
-                        <Form.Label>Definition</Form.Label>
-                        <Form.Control required as="textarea" name="definition" placeholder="definition"
+                        <Form.Label>Định nghĩa <span className="text-danger">*</span></Form.Label>
+                        <Form.Control required as="textarea" name="definition" placeholder="các bạn trẻ tràn đầy nhiệt huyết và năng động như con trâu"
                             value={input.email} />
                         {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
@@ -106,7 +117,7 @@ export default function AddWordPage() {
                     </Form.Group>
 
                     <Form.Group controlId="formBasicExample">
-                        <Form.Label>Example</Form.Label>
+                        <Form.Label>Ví dụ <span className="text-danger">*</span></Form.Label>
                         <Form.Control required as="textarea" name="example" placeholder="example"
                             value={input.example} />
                         {/* <Form.Text className="text-danger">
@@ -124,15 +135,18 @@ export default function AddWordPage() {
             </Form.Group> */}
 
                     <Form.Group>
-                        <Form.Label>Upload photo (Optional)</Form.Label>
+                        <Form.Label>Upload ảnh (Không bắt buộc)</Form.Label>
                         <Form.Control type="file" id="upload_form" name="image" accept="image/jpg, image/png, image/jpeg, image/gif" />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
-                        Submit
-             </Button>
+
+                    <Button variant="warning button" type="submit">
+                        Tạo từ mới
+                    </Button>
+                    
+               
                 </Form>
-                : <div>Your new word has been submitted. Let's hope it gets approved!</div>}
+                : <div>Từ của bạn đã được tạo. Hi vọng sẽ qua vòng kiểm duyệt!</div>}
         </div>
     )
 }

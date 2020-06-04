@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import UserStats from '../components/UserStats'
 import Button from 'react-bootstrap/Button'
 import Words from '../components/Words'
@@ -21,21 +21,21 @@ export default function MyProfilePage(props) {
         }
     }
 
-    const getWords = async(key) => {
-        setKey(key)
+    const getWords = async (keyW) => {
+        setKey(keyW)
         console.log('key', key)
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/${key}?page=${activePage}`, config)
+
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/${keyW}?page=${activePage}`, config)
         const data = await res.json()
-        if(data.status==="success"){
+        if (data.status === "success") {
             console.log('data my pro5', data)
             setWords(data.data)
             setTotalResult(data.totalResult)
         }
     }
-    
 
     // pagination
-    const handlePageChange = async (pageNumber)=> {
+    const handlePageChange = async (pageNumber) => {
         setActivePage(pageNumber);
         console.log(`active page is ${pageNumber}`);
 
@@ -46,40 +46,37 @@ export default function MyProfilePage(props) {
         setTotalResult(data.totalResult)
     }
 
-
     return (
         <div>
-            My Profile
-            {props.user? props.user.name : ""}
-            <UserStats user={props.user} />
-            <Button variant="warning" className="mr-2" onClick={()=>getWords('allMyPending')}>
-                Từ chờ duyệt <i class="fas fa-search"></i></Button>
-            <Button variant="warning" onClick={()=>getWords('allMyApproved')}>
-                Từ được đăng <i class="fas fa-search"></i></Button>
-
-                <div className="d-flex">
+            
+            <div className="d-flex">
                 <div className="col-3"></div>
                 <div className="col-6">
-                {props.user? props.user.name: ""}
-            {props.user? <UserStats user={props.user} /> : ""}
+                    {props.user ? <div><div>{props.user.name}</div>
+                        <UserStats user={props.user} />
+                        <Button variant="warning" className="mr-2" onClick={() => getWords('allMyPending')}>
+                            Từ chờ duyệt <i class="fas fa-search"></i></Button>
+                        <Button variant="warning" onClick={() => getWords('allMyApproved')}>
+                            Từ được đăng <i class="fas fa-search"></i></Button>
+                    </div> : ""}
 
 
-                    <Words words={words} key={key} setWords={setWords} getWords={getWords}/>
-                   
-                   <div className="d-flex justify-content-center">
-                    <Pagination className="pagination m-5 p-5"
-                        prevPageText='prev'
-                        nextPageText='next'
-                        firstPageText='first'
-                        lastPageText='last'
-                        activePage={activePage}
-                        itemsCountPerPage={10}
-                        totalItemsCount={totalResult}
-                        onChange={(pageNumber)=>handlePageChange(pageNumber)}
-                        itemClass="page-item"
-                        linkClass="page-link"
+                    <Words words={words} key={key} setWords={setWords} getWords={getWords} />
+
+                    <div className="d-flex justify-content-center">
+                        <Pagination className="pagination m-5 p-5"
+                            prevPageText='prev'
+                            nextPageText='next'
+                            firstPageText='first'
+                            lastPageText='last'
+                            activePage={activePage}
+                            itemsCountPerPage={10}
+                            totalItemsCount={totalResult}
+                            onChange={(pageNumber) => handlePageChange(pageNumber)}
+                            itemClass="page-item"
+                            linkClass="page-link"
                         />
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>

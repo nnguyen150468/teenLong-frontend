@@ -64,14 +64,16 @@ a:hover {
 }
 
 .button {
-  border: none
+  border: none;
+  font-weight: bold;
 }
 
-.dislikeButton {
+.brownButton {
   background-color: #8b4513;
+  color: white
 }
 
-.dislikeButton:hover {
+.brownButton:hover {
   background-color: #be6e34;
 }
 
@@ -81,6 +83,7 @@ a:hover {
     color: white !Important;
     border-style: none;
 }
+
 
 
 .pagination > li > a:focus,
@@ -106,3 +109,4 @@ a:hover {
     background-color: #8b4513 !Important;
     border-style: none;
 }
+

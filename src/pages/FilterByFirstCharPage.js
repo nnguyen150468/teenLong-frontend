@@ -12,7 +12,6 @@ export default function FilterByFirstCharPage() {
     const [totalResult, setTotalResult] = useState(1)
 
     useEffect(() => {
-        setActivePage(1)
         getWords()
     }, [params.character])
 
@@ -24,8 +23,8 @@ export default function FilterByFirstCharPage() {
     }
 
     const getWords = async () => {
-        
-        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/filter/${params.character}?page=${activePage}`, config)
+        setActivePage(1)
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/words/filter/${params.character}?page=${1}`, config)
         const data = await res.json()
         console.log('data===', data)
         setWords(data.data)
