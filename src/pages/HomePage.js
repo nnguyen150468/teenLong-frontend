@@ -50,7 +50,7 @@ export default function HomePage() {
                 <div className="col-6">
                     
                     <Words words={words}  setWords={setWords} getWords={getWords}/>
-                   
+                   {!words ? <div className="loader"></div> : ""}
                    <div className="d-flex justify-content-center">
                     <Pagination className="pagination m-5 p-5"
                         prevPageText='prev'

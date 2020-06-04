@@ -59,6 +59,7 @@ export default function FilterByFirstCharPage() {
             <div className="d-flex">
                 <div className="col-3"></div>
                 <div className="col-6">
+                    {!words? <div className="loader"></div> : ""}
                     <Words words={words} setWords={setWords} getWords={getWords}/>
                     <h2 className="mt-5">{warning}</h2>
                     <div className="d-flex justify-content-center">
