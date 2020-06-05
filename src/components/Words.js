@@ -17,9 +17,8 @@ export default function Words(props) {
         }
 
         const res = await fetch(`${process.env.REACT_APP_SERVER}/pendingWords/myWords/${wordID}`, config)
-        const data = await res.json()
-        console.log('data ====', data)
-        if(data.status==="success"){
+        console.log('res====', res)
+        if(res.status===204){
             props.getWords()
         }
     }
