@@ -17,8 +17,8 @@ export default function MyProfilePage(props) {
     return (
         <div>
             
-            <div className="d-flex">
-                <div className="col-3"></div>
+            <div className="d-flex justify-content-center">
+                
                 <div className="col-6">
                     {props.user ? 
                     <div className="mt-5">

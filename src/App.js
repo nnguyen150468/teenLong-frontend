@@ -68,7 +68,7 @@ function App() {
         {/* <Route path="/login" exact user={user} setUser={setUser}  component={LoginPage} /> */}
         <AlreadyLoggedIn path="/login" exact user={user} setUser={setUser} component={LoginPage}/>
         <AlreadyLoggedIn path="/signup" exact user={user} component={SignupPage} />
-        <Route path="/addWord"  exact component={AddWordPage} />
+        <MustLogInFirst path="/addWord" user={user} exact component={AddWordPage} />
         <AlreadyLoggedIn path="/users/recoverPassword" exact component={PasswordRecoverPage} />
         <AlreadyLoggedIn path="/email/:token" exact component={SetNewPasswordPage} />
         <Route path="/" user={user} exact component={HomePage} />

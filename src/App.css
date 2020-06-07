@@ -1,3 +1,11 @@
+:root {
+  --dark: red;
+}
+
+body {
+  background-color: rgb(243, 243, 243);
+}
+
 .App {
   text-align: center;
 }
@@ -194,4 +202,32 @@ a:hover {
 
 .trash {
   cursor: pointer;
+}
+
+
+.speech-bubble {
+	position: relative;
+	background: var(--warning);
+  border-radius: .4em;
+  max-width: max-content;
+  padding: 0.3em;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 39px solid transparent;
+	border-right-color: var(--warning);
+	border-left: 0;
+	border-top: 0;
+	margin-top: -19.5px;
+	margin-left: -39px;
+}
+
+.honorsBadges {
+  width: 6em
 }

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import Words from '../components/Words'
 import Pagination from "react-js-pagination";
-import Header from '../components/Header'
+import SearchResultHeader from '../components/SearchResultHeader'
 
 export default function SearchResultPage() {
   const [words, setWords] = useState([])
@@ -47,10 +47,10 @@ export default function SearchResultPage() {
     return ( words?
         <div>
           
-      <Header words={words} setWords={setWords}/>
-        <div className="d-flex">
-            <div className="col-3"></div>
-            <div className="col-6">
+      <SearchResultHeader words={words} setWords={setWords}/>
+        <div className="d-flex justify-content-center">
+            
+            <div className="col-md-6 col-sm-12">
                 
             <Words words={words} isSearch={isSearch} setWords={setWords} getWords={getWords}/>
                 

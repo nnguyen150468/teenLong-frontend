@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
@@ -35,7 +35,7 @@ export default function NavBar(props) {
 
     return (
         <div>
-                <Navbar bg="dark" expand="lg" variant="dark">
+                {<Navbar bg="dark" expand="lg" variant="dark">
                     <Link to="/"><Navbar.Brand>
                     <Logo style={{width: "50px"}} />
                     </Navbar.Brand></Link>
@@ -46,8 +46,8 @@ export default function NavBar(props) {
                                 <div className="d-flex flex-wrap">
                                     {renderAlphabet()}
                                     <div onClick={()=> filterByFirstChar('*')} 
-                    className="col-3 d-flex justify-content-center text-center">
-            <div className="firstChar p-1 m-1">#</div></div>
+                            className="col-3 d-flex justify-content-center text-center">
+                                <div className="firstChar p-1 m-1">#</div></div>
                                 </div>
                             </NavDropdown>
 
@@ -63,10 +63,10 @@ export default function NavBar(props) {
                         <Nav inline="true">
                             {props.user ? <Nav.Link as={NavLink} to="/myProfile"><i class="fas fa-user"></i> {props.user.name}</Nav.Link> : <Nav.Link as={NavLink} to="/login"> Đăng nhập</Nav.Link>}
                             {props.user ? "" : <Nav.Link as={NavLink} to="/signup">Đăng kí</Nav.Link>}
-                            {props.user ? <Nav.Link as={NavLink} to="/logout" onClick={logout}>Thoát</Nav.Link> : ""}
+                            {props.user ? <Nav.Link as={NavLink} to="/" onClick={logout}>Thoát</Nav.Link> : ""}
                         </Nav>
                     </Navbar.Collapse>
-                </Navbar>
+                </Navbar>}
         </div>
     )
 }

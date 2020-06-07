@@ -45,9 +45,8 @@ export default function HomePage() {
         words?
         <div>
             <Header words={words} setWords={setWords}/>
-            <div className="d-flex">
-                <div className="col-3"></div>
-                <div className="col-6">
+            <div className="d-flex justify-content-center">
+            <div className="col-md-6">
                     
                     <Words words={words}  setWords={setWords} getWords={getWords}/>
                    {!words ? <div className="loader"></div> : ""}

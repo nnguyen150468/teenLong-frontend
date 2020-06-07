@@ -6,7 +6,7 @@ export default function LoginPage(props) {
 
     return (
         <div className="d-flex justify-content-center">
-        <div className="containerLogin  d-flex flex-column">
+        <div className="containerLogin  d-flex flex-column bg-white px-5 pb-5 rounded mt-4">
         
         <div className="mb-3 "><SignIn setUser={props.setUser}/></div>
 

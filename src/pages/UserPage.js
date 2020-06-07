@@ -57,16 +57,12 @@ export default function UserPage(props) {
     }
 
     return (
-        <div>
-            <Header words={words} setWords={setWords}/>
-            
-            
-            <div className="d-flex">
+        <div>            
+            <div className="d-flex mt-5">
                 <div className="col-3"></div>
                 <div className="col-6">
-                {user? user.name: ""}
+                
             {user? <UserStats user={user} /> : ""}
-
 
                     <Words words={words}  setWords={setWords} getWords={getWords}/>
                    

@@ -4,5 +4,5 @@ import {Route, Redirect} from 'react-router-dom'
 export default function MustLogInFirst({component: Component, ...props}) {
     return props.user
     ? <Route {...props} render={()=><Component {...props} />}/>
-    : <Redirect to="/"/>
+    : <Redirect to="/login"/>
 }

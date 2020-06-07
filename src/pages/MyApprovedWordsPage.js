@@ -40,8 +40,7 @@ export default function MyApprovedWords(props) {
     return (
         <div>
             
-            <div className="d-flex">
-                <div className="col-3"></div>
+            <div className="d-flex justify-content-center">
                 {props.user? 
                 <div className="col-6 mt-5">
                     

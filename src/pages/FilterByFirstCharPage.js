@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import Header from '../components/Header'
+import Filter1stCharHeader from '../components/Filter1stCharHeader'
 import Pagination from "react-js-pagination";
 import Words from '../components/Words'
 
@@ -14,6 +14,7 @@ export default function FilterByFirstCharPage() {
     const [warning, setWarning] = useState(null)
 
     useEffect(() => {
+        setWarning(null)
         getWords()
     }, [params.character])
 
@@ -55,10 +56,10 @@ export default function FilterByFirstCharPage() {
 
     return (words?
         <div>
-            <Header words={words} setWords={setWords}/>
-            <div className="d-flex">
-                <div className="col-3"></div>
-                <div className="col-6">
+            <Filter1stCharHeader words={words} setWords={setWords}/>
+            <div className="d-flex justify-content-center">
+            
+            <div className="col-md-6">
                     {!words? <div className="loader"></div> : ""}
                     <Words words={words} setWords={setWords} getWords={getWords}/>
                     <h2 className="mt-5">{warning}</h2>

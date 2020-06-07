@@ -66,7 +66,7 @@ export default function Words(props) {
 
     return (
         <div>
-            {renderWord()}
+            {props.words? renderWord(): <div className="loader"></div>}
         </div>
     )
 }
