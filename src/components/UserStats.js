@@ -8,7 +8,7 @@ import 'tippy.js/dist/tippy.css';
 
 export default function UserStats(props) {
     return (
-        <div className="bg-dark text-white">
+        <div className="bg-dark col-sm-12 text-white mb-3">
             <div className="row mb-5">
                 <img src={YoungBuff} className="ml-5 mt-3 d-none d-md-block"/>
                 <div className=" col">

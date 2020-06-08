@@ -17,28 +17,21 @@ export default function MyProfilePage(props) {
     return (
         <div>
             
-            <div className="d-flex justify-content-center">
-                
-                <div className="col-6">
-                    {props.user ? 
-                    <div className="mt-5">
-                        <div className="my-3">
-                            <UserStats user={props.user} />
-                        </div>
-                        <div className="mt-5">
-                            <Link to="/myProfile/pendingWords">
-                                <Button variant="warning" className="mr-2" >
-                                    Từ chờ duyệt <i class="fas fa-search"></i></Button>
-                            </Link>
-                            <Link to="/myProfile/approvedWords">
-                            <Button variant="success" >
-                                Từ được đăng <i class="fas fa-search"></i></Button>
-                            </Link>
-                        </div>
-                    </div> : <div className="loader"></div>}
+            {props.user ? <div className="d-flex justify-content-center mt-5">
+                <div className="col-md-6 col-sm-12">
+                    <UserStats user={props.user} />
 
+                    <Link to="/myProfile/pendingWords">
+                        <Button variant="warning" className="mr-2" >
+                            Từ chờ duyệt <i class="fas fa-search"></i></Button>
+                    </Link>
+                    <Link to="/myProfile/approvedWords">
+                    <Button variant="success" >
+                        Từ được đăng <i class="fas fa-search"></i></Button>
+                    </Link>
                 </div>
             </div>
+            : <div className="loader"></div>}
         </div>
     )
 }
