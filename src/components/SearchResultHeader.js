@@ -27,7 +27,7 @@ export default function SearchResultHeader(props) {
     return (
         <div className="row d-flex justify-content-center bg-dark py-5 homeHeader">
 
-            <img src={BuffSearch} className="col-md-4 col-sm-0 bannerImage"/>
+            <img src={BuffSearch} className="col-md-4 d-none d-md-block bannerImage"/>
             <div className="col-md-8 col-sm-8">
                 {/* <img src={title} className="col-5"/>
                 <h2 className="text-white pl-2 slogan py-3">Ngôn ngữ từ cộng đồng</h2>

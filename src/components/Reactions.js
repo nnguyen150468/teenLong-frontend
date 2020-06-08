@@ -62,8 +62,8 @@ export default function Reactions(props) {
     return (
         <div >
             <div>
-            <Button variant="warning mr-2" className="button col-2" onClick={()=>likeWord(props.word)}><i class="far fa-thumbs-up"></i> {props.likes}</Button>
-            <Button className="button col-2 brownButton" onClick={()=>dislikeWord(props.word)}><i class="far fa-thumbs-down"></i> {props.dislikes}</Button>
+            <Button variant="warning mr-2" className="button col-md-3 col-sm-2" onClick={()=>likeWord(props.word)}><i class="far fa-thumbs-up"></i> {props.likes}</Button>
+            <Button className="button col-md-3 col-sm-2 brownButton" onClick={()=>dislikeWord(props.word)}><i class="far fa-thumbs-down"></i> {props.dislikes}</Button>
             </div>
             {warning}
         </div>

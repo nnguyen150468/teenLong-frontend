@@ -27,7 +27,7 @@ export default function Filter1stCharHeader(props) {
     return (
         <div className="bg-dark py-5 homeHeader">
             <div className="row d-flex justify-content-center ">
-                <img src={BuffFilter1stChar} className="col-md-4 col-sm-0 bannerImage"/>
+                <img src={BuffFilter1stChar} className="col-md-4 d-none d-md-block bannerImage"/>
                 <div className="col-md-8 col-sm-10">
                     <div className="speech-bubble display-4 mt-5 ml-5 text-center">Chữ cái đầu là  <span className="font-weight-bold">
                         {word==="*"? "kí tự đặc biệt" : `${word.toUpperCase()}`}</span></div>

@@ -10,7 +10,7 @@ export default function UserStats(props) {
     return (
         <div className="bg-dark text-white">
             <div className="row mb-5">
-                <img src={YoungBuff} className="ml-5 mt-3"/>
+                <img src={YoungBuff} className="ml-5 mt-3 d-none d-md-block"/>
                 <div className=" col">
                     <h1 className="ml-5 mt-5">{props.user.name}</h1>
                     <div className="d-flex">
