@@ -40,10 +40,10 @@ export default function MyPendingWordsPage(props) {
     return (
         <div>
             
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center mt-5">
                 
                 {props.user? 
-                <div className="col-6 mt-5">
+                <div className="col-md-6 col-sm-12">
                     
                     <UserStats user={props.user} />
                     <Words words={words}  setWords={setWords} getWords={getWords}/>
