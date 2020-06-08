@@ -35,7 +35,7 @@ export default function NavBar(props) {
 
     return (
         <div>
-                {<Navbar bg="dark" expand="lg" variant="dark">
+                {<Navbar style={{backgroundColor:"black"}} expand="lg" variant="dark">
                     <Link to="/"><Navbar.Brand>
                     <Logo style={{width: "50px"}} />
                     </Navbar.Brand></Link>
