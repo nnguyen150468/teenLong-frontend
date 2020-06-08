@@ -23,9 +23,9 @@ export default function Header(props) {
     }
 
     return (
-        <div className="d-flex justify-content-center bg-dark py-5">
-            <img src={searchImg} className="col-4 bannerImage"/>
-            <div className="col-8">
+        <div className="d-flex justify-content-center bg-dark py-5 homeHeader">
+            <img src={searchImg} className="col-4 bannerImage d-none d-md-block"/>
+            <div className="col-md-8 col-sm-10">
                 <img src={title} className="col-5"/>
                 <h2 className="text-white pl-2 slogan py-3">Ngôn ngữ từ cộng đồng</h2>
             <Form inline className="col-md-9 col-sm-12 d-flex justify-content-center" onSubmit={getKeyWord} onChange={handleChange} >

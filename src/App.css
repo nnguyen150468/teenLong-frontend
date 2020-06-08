@@ -7,9 +7,13 @@
 body {
   /* background-color: rgb(243, 243, 243); */
   background-color: #f0ebe5;
-  /* background-image: url("./images/pattern.svg");
-  background-size: 100px */
 }
+
+.homeHeader {
+  background-image: url('./images/pattern.svg');
+  /* opacity: 0.5; */
+}
+
 
 .App {
   text-align: center;

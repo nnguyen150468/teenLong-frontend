@@ -25,7 +25,7 @@ export default function Filter1stCharHeader(props) {
     }
 
     return (
-        <div className="bg-dark py-5">
+        <div className="bg-dark py-5 homeHeader">
             <div className="row d-flex justify-content-center ">
                 <img src={BuffFilter1stChar} className="col-md-4 col-sm-0 bannerImage"/>
                 <div className="col-md-8 col-sm-10">
