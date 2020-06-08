@@ -50,7 +50,7 @@ export default function Words(props) {
                 <Card.Img variant="top" src={el.image} />
                 <small className="font-weight-bold">
                     Đăng bởi {el.user?<Link to={`/users/${el.user._id}`}> 
-                    {el.user.name} </Link>: "anonymous"} 
+                    {el.user.name} </Link>: <span className="text-muted">anonymous </span>} 
                      <Moment format="DD/MM, YYYY">{el.createdAt}</Moment></small>
             
                 </Card.Text>

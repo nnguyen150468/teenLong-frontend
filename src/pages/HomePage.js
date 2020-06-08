@@ -46,7 +46,7 @@ export default function HomePage() {
         <div>
             <Header words={words} setWords={setWords}/>
             <div className="d-flex justify-content-center">
-            <div className="col-md-6">
+                <div className="col-md-5">
                     
                     <Words words={words}  setWords={setWords} getWords={getWords}/>
                    {!words ? <div className="loader"></div> : ""}
@@ -63,7 +63,21 @@ export default function HomePage() {
                         itemClass="page-item"
                         linkClass="page-link"
                         />
+                    </div>
+                </div>
+                <div className="col-md-2 mt-4">
+                    {/* <div className="row">
+                        <div className="plus-container mr-3">
+                            <i class="fa fa-plus" aria-hidden="true"></i>   
                         </div>
+                        <div className="d-flex align-items-center font-weight-bold">THÊM TỪ MỚI</div>
+                    </div> */}
+                    <div className="add-new-word p-3 d-flex justify-content-around">
+                        <i class="fa fa-plus" aria-hidden="true"></i> <span>THÊM TỪ MỚI</span>
+                    </div>
+                    <div className="mt-3">
+                        <span className="add-word-description">Teen Lóng được xây dựng bởi chính bạn! </span>
+                    </div>
                 </div>
             </div>
         </div> : <div className="loader"></div>

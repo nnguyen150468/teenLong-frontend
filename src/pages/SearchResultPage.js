@@ -9,6 +9,7 @@ export default function SearchResultPage() {
   const [activePage, setActivePage] = useState(1);
   const [totalResult, setTotalResult] = useState(1)
   const [isSearch, setIsSearch] = useState(false)
+  
   const params = useParams()
   useEffect(() => {
     getWords()
@@ -39,7 +40,6 @@ export default function SearchResultPage() {
 
       const res = await fetch(`${process.env.REACT_APP_SERVER}/words/?page=${pageNumber}`, config);
       const data = await res.json();
-      console.log('paginated data:', data);
       setWords(data.data)
       setTotalResult(data.totalResult)
   }
